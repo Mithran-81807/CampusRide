@@ -1,0 +1,1302 @@
+
+/* =========================================================
+   CAMPUSRIDE - COMPLETE STYLE.CSS
+   Welcome | Rider Login | Driver Login | Registration
+   Rider Dashboard | Driver Dashboard | My Bookings
+   ========================================================= */
+
+/* 1. GLOBAL VARIABLES */
+:root {
+    --primary: #2860f5;
+    --primary-hover: #1d4ed8;
+    --primary-light: #dbeafe;
+
+    --success: #16a34a;
+    --success-light: #dcfce7;
+
+    --danger: #dc2626;
+    --danger-light: #fee2e2;
+
+    --warning: #d97706;
+    --warning-light: #fef3c7;
+
+    --background: #f3f6fb;
+    --surface: #ffffff;
+
+    --text: #0b2347;
+    --text-secondary: #64748b;
+
+    --border: #dce5f1;
+    --radius: 18px;
+
+    --shadow: 0 12px 35px rgba(15, 35, 75, 0.07);
+}
+
+/* 2. RESET */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--background);
+    color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--primary-hover);
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    margin-top: 0;
+    color: var(--text);
+    line-height: 1.25;
+}
+
+p {
+    margin-top: 0;
+}
+
+/* 3. MAIN PAGE CONTAINER */
+.container {
+    width: min(1180px, calc(100% - 36px));
+    margin: 0 auto;
+    padding: 28px 0;
+}
+
+.page-container {
+    width: min(1180px, calc(100% - 36px));
+    margin: 0 auto;
+    padding: 32px 0;
+}
+
+main {
+    min-height: calc(100vh - 150px);
+}
+
+/* 4. NAVIGATION BAR */
+.navbar {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 16px max(24px, calc((100% - 1180px) / 2));
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+}
+
+.navbar-brand,
+.brand {
+    color: var(--text);
+    font-size: 23px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.navbar-brand:hover,
+.brand:hover {
+    color: var(--primary);
+}
+
+.navbar-nav,
+.nav-links {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 22px;
+}
+
+.navbar-nav a,
+.nav-links a {
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.navbar-nav a:hover,
+.nav-links a:hover {
+    color: var(--primary);
+}
+
+.navbar-toggler {
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: white;
+}
+
+/* 5. SHARED CARDS */
+.card,
+.panel,
+.dashboard-card {
+    padding: 26px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.card-header {
+    margin-bottom: 20px;
+}
+
+.card-title {
+    margin-bottom: 8px;
+    font-size: 23px;
+    font-weight: 750;
+}
+
+.card-description {
+    color: var(--text-secondary);
+}
+
+/* 6. WELCOME / INDEX PAGE */
+.hero,
+.welcome-section {
+    display: flex;
+    min-height: 75vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 55px 24px;
+    text-align: center;
+}
+
+.hero h1,
+.welcome-section h1 {
+    margin-bottom: 16px;
+    font-size: clamp(38px, 6vw, 64px);
+    font-weight: 850;
+    letter-spacing: -1.8px;
+}
+
+.hero p,
+.welcome-section p {
+    max-width: 700px;
+    margin-bottom: 32px;
+    color: var(--text-secondary);
+    font-size: clamp(17px, 2vw, 22px);
+}
+
+.hero-actions,
+.role-selection,
+.role-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+    max-width: 760px;
+    margin: 20px auto;
+}
+
+.role-card {
+    flex: 1 1 260px;
+    max-width: 340px;
+    padding: 32px 26px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    box-shadow: var(--shadow);
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.role-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 40px rgba(15, 35, 75, 0.12);
+}
+
+.role-card h2 {
+    margin: 18px 0 10px;
+    font-size: 25px;
+}
+
+.role-card p {
+    color: var(--text-secondary);
+    font-size: 15px;
+}
+
+.role-icon {
+    display: flex;
+    width: 78px;
+    height: 78px;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    border-radius: 23px;
+    background: var(--primary-light);
+    font-size: 36px;
+}
+
+.role-icon.driver-icon,
+.driver-role-icon {
+    background: var(--success-light);
+}
+
+.role-card .btn,
+.role-card .button {
+    width: 100%;
+    margin-top: 12px;
+}
+
+/* 7. LOGIN AND REGISTRATION CARDS */
+.auth-container {
+    display: flex;
+    min-height: 80vh;
+    align-items: center;
+    justify-content: center;
+    padding: 28px 16px;
+}
+
+.auth-card {
+    width: min(100%, 690px);
+    margin: 24px auto;
+    padding: 48px 50px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 32px;
+    box-shadow: 0 10px 35px rgba(15, 35, 75, 0.04);
+    text-align: center;
+}
+
+.auth-icon {
+    display: flex;
+    width: 88px;
+    height: 88px;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    border-radius: 26px;
+    background: var(--primary-light);
+    color: var(--primary);
+    font-size: 38px;
+}
+
+.auth-icon span {
+    line-height: 1;
+}
+
+.driver-icon {
+    background: var(--success-light);
+    color: var(--success);
+}
+
+.auth-card h1 {
+    margin: 32px 0 26px;
+    font-size: clamp(32px, 5vw, 44px);
+    font-weight: 800;
+    letter-spacing: -0.8px;
+}
+
+.auth-subtitle {
+    margin: 0 0 38px;
+    color: var(--text-secondary);
+    font-size: 21px;
+    line-height: 1.7;
+}
+
+.auth-card form {
+    text-align: left;
+}
+
+.auth-card label,
+.form-label {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--text);
+    font-size: 18px;
+    font-weight: 700;
+    text-align: left;
+}
+
+.auth-card input,
+.auth-card select,
+.auth-card textarea {
+    width: 100%;
+    min-height: 68px;
+    margin-bottom: 24px;
+    padding: 17px 20px;
+    border: 1px solid #cbd5e1;
+    border-radius: 16px;
+    background: white;
+    color: var(--text);
+    font-size: 19px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.auth-card input:focus,
+.auth-card select:focus,
+.auth-card textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(40, 96, 245, 0.1);
+}
+
+.auth-card input::placeholder {
+    color: #8190a5;
+}
+
+.auth-submit {
+    display: block;
+    width: 100%;
+    min-height: 68px;
+    padding: 16px 22px;
+    border: none;
+    border-radius: 16px;
+    background: var(--primary);
+    color: white;
+    font-size: 23px;
+    font-weight: 800;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.auth-submit:hover {
+    background: var(--primary-hover);
+}
+
+.auth-submit:active {
+    transform: scale(0.99);
+}
+
+/* 8. REGISTER LINK ON LOGIN PAGES */
+.register-prompt,
+.register-link {
+    margin-top: 32px;
+    color: var(--text-secondary);
+    font-size: 19px;
+    text-align: center;
+}
+
+.register-prompt p,
+.register-link p {
+    margin-bottom: 10px;
+}
+
+.register-prompt a,
+.register-link a {
+    color: var(--primary);
+    font-weight: 800;
+}
+
+.register-prompt a:hover,
+.register-link a:hover {
+    color: var(--primary-hover);
+    text-decoration: underline;
+}
+
+.register-btn {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px 16px;
+    border: 1px solid var(--primary);
+    border-radius: 10px;
+    color: var(--primary);
+    font-weight: 700;
+    transition: background 0.2s, color 0.2s;
+}
+
+.register-btn:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.driver-register-link {
+    margin-top: 24px;
+    text-align: center;
+}
+
+/* 9. DRIVER OTP SECURITY NOTE */
+.driver-security-note {
+    margin-top: 26px;
+    padding: 18px;
+    border-radius: 16px;
+    background: #effdf5;
+    color: #527365;
+    font-size: 17px;
+    line-height: 1.7;
+    text-align: center;
+}
+
+/* 10. BACK LINKS */
+.back-link {
+    display: inline-block;
+    margin-top: 38px;
+    color: var(--primary);
+    font-size: 18px;
+    font-weight: 750;
+    text-decoration: none;
+}
+
+.back-link:hover {
+    color: var(--primary-hover);
+    text-decoration: underline;
+}
+
+/* 11. GENERAL BUTTONS */
+.btn,
+.button,
+button.btn {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 11px 20px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    background: var(--primary);
+    color: white;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.btn:hover,
+.button:hover,
+button.btn:hover {
+    background: var(--primary-hover);
+    color: white;
+}
+
+.btn:active,
+.button:active {
+    transform: translateY(1px);
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-success {
+    background: var(--success);
+    color: white;
+}
+
+.btn-success:hover {
+    background: #15803d;
+}
+
+.btn-danger {
+    background: var(--danger);
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #b91c1c;
+}
+
+.btn-warning {
+    background: var(--warning);
+    color: white;
+}
+
+.btn-warning:hover {
+    background: #b45309;
+}
+
+.btn-outline {
+    border-color: var(--primary);
+    background: transparent;
+    color: var(--primary);
+}
+
+.btn-outline:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-secondary {
+    background: #64748b;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #475569;
+}
+
+.btn-sm {
+    min-height: 34px;
+    padding: 6px 12px;
+    border-radius: 7px;
+    font-size: 14px;
+}
+
+.btn-lg {
+    min-height: 54px;
+    padding: 15px 26px;
+    font-size: 18px;
+}
+
+.btn-block {
+    display: flex;
+    width: 100%;
+}
+
+button:disabled,
+.btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* 12. FORMS */
+.form-group,
+.form-field {
+    margin-bottom: 20px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text);
+    font-weight: 650;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    min-height: 46px;
+    padding: 11px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    background: white;
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(40, 96, 245, 0.1);
+}
+
+textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    width: auto;
+    min-height: auto;
+    margin-right: 8px;
+    accent-color: var(--primary);
+}
+
+input[type="checkbox"]:focus,
+input[type="radio"]:focus {
+    box-shadow: none;
+}
+
+input[type="checkbox"] + label,
+input[type="radio"] + label {
+    display: inline;
+}
+
+.form-hint,
+.help-text {
+    display: block;
+    margin-top: 6px;
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+
+.required {
+    color: var(--danger);
+}
+
+/* 13. DASHBOARD HEADERS */
+.dashboard-header,
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.dashboard-header h1,
+.page-header h1 {
+    margin-bottom: 8px;
+    font-size: clamp(27px, 4vw, 36px);
+    font-weight: 800;
+}
+
+.dashboard-header p,
+.page-header p {
+    margin-bottom: 0;
+    color: var(--text-secondary);
+}
+
+.section-title {
+    margin-bottom: 18px;
+    font-size: 24px;
+    font-weight: 750;
+}
+
+.section-subtitle {
+    margin-top: -8px;
+    margin-bottom: 20px;
+    color: var(--text-secondary);
+}
+
+/* 14. DASHBOARD GRIDS */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.dashboard-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+    margin-bottom: 28px;
+}
+
+.stat-card {
+    padding: 22px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+}
+
+.stat-label {
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 650;
+}
+
+.stat-value {
+    margin-top: 8px;
+    font-size: 30px;
+    font-weight: 800;
+}
+
+/* 15. RIDE SEARCH FORM */
+.ride-search-card {
+    padding: 28px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+}
+
+.ride-search-form {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.ride-search-form .form-group {
+    margin-bottom: 0;
+}
+
+.ride-search-form .search-action {
+    grid-column: 1 / -1;
+}
+
+.ride-search-form .search-action button {
+    width: 100%;
+}
+
+.location-field {
+    position: relative;
+}
+
+.location-field select {
+    background-color: white;
+}
+
+/* 16. RIDE AND BOOKING CARDS */
+.ride-list {
+    display: grid;
+    gap: 18px;
+}
+
+.ride-card,
+.booking-card {
+    padding: 22px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.ride-card:hover,
+.booking-card:hover {
+    box-shadow: var(--shadow);
+    transform: translateY(-2px);
+}
+
+.ride-card-header,
+.booking-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.ride-card h3,
+.booking-card h3 {
+    margin-bottom: 6px;
+    font-size: 20px;
+}
+
+.ride-route,
+.booking-route {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 18px 0;
+    font-weight: 700;
+}
+
+.route-arrow {
+    color: var(--primary);
+    font-size: 20px;
+}
+
+.ride-details,
+.booking-details {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    padding-top: 16px;
+    border-top: 1px solid #edf1f7;
+}
+
+.detail-label {
+    display: block;
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+
+.detail-value {
+    display: block;
+    margin-top: 4px;
+    font-weight: 700;
+}
+
+.ride-actions,
+.booking-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* 17. STATUS BADGES */
+.badge,
+.status-badge,
+.status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 11px;
+    border-radius: 999px;
+    background: #e2e8f0;
+    color: #334155;
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 1.4;
+    white-space: nowrap;
+}
+
+.status-available,
+.status-completed,
+.status-approved,
+.badge-success {
+    background: var(--success-light);
+    color: #166534;
+}
+
+.status-requested,
+.status-pending,
+.status-on-ride,
+.badge-warning {
+    background: var(--warning-light);
+    color: #92400e;
+}
+
+.status-accepted,
+.status-ongoing,
+.badge-primary {
+    background: var(--primary-light);
+    color: #1d4ed8;
+}
+
+.status-cancelled,
+.status-rejected,
+.status-inactive,
+.badge-danger {
+    background: var(--danger-light);
+    color: #991b1b;
+}
+
+/* 18. TABLES */
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: white;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    text-align: left;
+}
+
+thead {
+    background: #f1f5f9;
+}
+
+th,
+td {
+    padding: 15px 16px;
+    border-bottom: 1px solid #e8edf4;
+    vertical-align: middle;
+}
+
+th {
+    color: #334155;
+    font-size: 13px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+td {
+    color: #334155;
+    font-size: 14px;
+}
+
+tbody tr:hover {
+    background: #f8fafc;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* 19. ALERTS AND FLASH MESSAGES */
+.alert,
+.flash-message {
+    margin: 16px 0;
+    padding: 14px 18px;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    font-size: 14px;
+}
+
+.alert-success,
+.flash-success {
+    border-color: #bbf7d0;
+    background: #f0fdf4;
+    color: #166534;
+}
+
+.alert-danger,
+.alert-error,
+.flash-error {
+    border-color: #fecaca;
+    background: #fef2f2;
+    color: #991b1b;
+}
+
+.alert-warning,
+.flash-warning {
+    border-color: #fde68a;
+    background: #fffbeb;
+    color: #92400e;
+}
+
+.alert-info,
+.flash-info {
+    border-color: #bfdbfe;
+    background: #eff6ff;
+    color: #1e40af;
+}
+
+/* 20. EMPTY STATES */
+.empty-state {
+    padding: 48px 22px;
+    border: 1px dashed #cbd5e1;
+    border-radius: 18px;
+    background: white;
+    text-align: center;
+}
+
+.empty-state h3 {
+    margin-bottom: 10px;
+    font-size: 22px;
+}
+
+.empty-state p {
+    margin-bottom: 20px;
+    color: var(--text-secondary);
+}
+
+/* 21. DIVIDERS AND TEXT HELPERS */
+.divider {
+    height: 1px;
+    margin: 24px 0;
+    background: var(--border);
+}
+
+.text-primary {
+    color: var(--primary);
+}
+
+.text-success {
+    color: var(--success);
+}
+
+.text-danger {
+    color: var(--danger);
+}
+
+.text-muted {
+    color: var(--text-secondary);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.fw-bold {
+    font-weight: 750;
+}
+
+.small {
+    font-size: 13px;
+}
+
+.mt-1 { margin-top: 6px; }
+.mt-2 { margin-top: 12px; }
+.mt-3 { margin-top: 18px; }
+.mt-4 { margin-top: 24px; }
+
+.mb-1 { margin-bottom: 6px; }
+.mb-2 { margin-bottom: 12px; }
+.mb-3 { margin-bottom: 18px; }
+.mb-4 { margin-bottom: 24px; }
+
+/* 22. FOOTER */
+.footer {
+    padding: 24px 18px;
+    border-top: 1px solid var(--border);
+    background: white;
+    color: var(--text-secondary);
+    text-align: center;
+    font-size: 14px;
+}
+
+.footer p {
+    margin: 0;
+}
+
+/* 23. LOADING / DISABLED STATES */
+.loading {
+    opacity: 0.65;
+    pointer-events: none;
+}
+
+.spinner {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border: 3px solid rgba(255, 255, 255, 0.4);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* 24. ACCESSIBILITY */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid rgba(40, 96, 245, 0.45);
+    outline-offset: 3px;
+}
+
+/* 25. RESPONSIVE TABLETS */
+@media (max-width: 900px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .dashboard-grid-3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .auth-card {
+        padding: 40px 32px;
+    }
+
+    .navbar {
+        padding: 15px 22px;
+    }
+}
+
+/* 26. RESPONSIVE MOBILE */
+@media (max-width: 600px) {
+    body {
+        font-size: 15px;
+    }
+
+    .container,
+    .page-container {
+        width: calc(100% - 24px);
+        padding: 20px 0;
+    }
+
+    .navbar {
+        align-items: flex-start;
+        padding: 14px 16px;
+    }
+
+    .navbar-brand,
+    .brand {
+        font-size: 20px;
+    }
+
+    .navbar-nav,
+    .nav-links {
+        width: 100%;
+        gap: 14px;
+        font-size: 14px;
+    }
+
+    .hero,
+    .welcome-section {
+        min-height: 65vh;
+        padding: 40px 16px;
+    }
+
+    .hero h1,
+    .welcome-section h1 {
+        font-size: 38px;
+    }
+
+    .hero p,
+    .welcome-section p {
+        font-size: 17px;
+    }
+
+    .role-selection,
+    .role-buttons,
+    .hero-actions {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .role-card {
+        width: 100%;
+        max-width: 420px;
+        flex: auto;
+    }
+
+    .auth-container {
+        min-height: auto;
+        padding: 14px 10px;
+    }
+
+    .auth-card {
+        width: 100%;
+        margin: 10px auto;
+        padding: 30px 20px;
+        border-radius: 24px;
+    }
+
+    .auth-icon {
+        width: 72px;
+        height: 72px;
+        border-radius: 22px;
+        font-size: 32px;
+    }
+
+    .auth-card h1 {
+        margin: 25px 0 18px;
+        font-size: 32px;
+    }
+
+    .auth-subtitle {
+        margin-bottom: 28px;
+        font-size: 17px;
+    }
+
+    .auth-card label {
+        font-size: 16px;
+    }
+
+    .auth-card input,
+    .auth-card select,
+    .auth-card textarea {
+        min-height: 56px;
+        margin-bottom: 20px;
+        padding: 14px;
+        border-radius: 12px;
+        font-size: 16px;
+    }
+
+    .auth-submit {
+        min-height: 56px;
+        padding: 14px;
+        border-radius: 12px;
+        font-size: 19px;
+    }
+
+    .register-prompt,
+    .register-link {
+        font-size: 16px;
+    }
+
+    .driver-security-note {
+        padding: 14px;
+        font-size: 14px;
+    }
+
+    .back-link {
+        margin-top: 28px;
+        font-size: 16px;
+    }
+
+    .dashboard-header,
+    .page-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .dashboard-grid,
+    .dashboard-grid-3,
+    .stats-grid,
+    .ride-search-form,
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .card,
+    .panel,
+    .dashboard-card,
+    .ride-search-card {
+        padding: 18px;
+    }
+
+    .ride-details,
+    .booking-details {
+        grid-template-columns: 1fr;
+    }
+
+    .ride-actions,
+    .booking-actions {
+        flex-direction: column;
+    }
+
+    .ride-actions .btn,
+    .booking-actions .btn {
+        width: 100%;
+    }
+
+    th,
+    td {
+        padding: 11px;
+        font-size: 13px;
+    }
+
+    .stat-value {
+        font-size: 25px;
+    }
+
+    .btn {
+        max-width: 100%;
+    }
+}
+
+/* 27. REDUCED MOTION */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

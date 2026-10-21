@@ -1,0 +1,49 @@
+```html
+{% extends "base.html" %}
+
+{% block title %}Driver Registration | CampusRide{% endblock %}
+
+{% block content %}
+<div class="auth-card">
+    <h1>Verify Driver OTP</h1>
+    <p>Enter the 6-digit OTP sent to your registered mobile number.</p>
+
+    {% if phone %}
+        <p><strong>Mobile:</strong> {{ phone }}</p>
+    {% endif %}
+
+    <form method="POST"
+          action="{{ url_for('verify_driver_registration') }}">
+
+        <label for="otp">One-Time Password</label>
+
+        <input
+            type="text"
+            id="otp"
+            name="otp"
+            placeholder="Enter 6-digit OTP"
+            inputmode="numeric"
+            pattern="[0-9]{6}"
+            maxlength="6"
+            minlength="6"
+            required
+        >
+
+        <button type="submit" class="btn btn-primary">
+            Verify OTP & Register
+        </button>
+    </form>
+
+    <p>
+        Wrong number or OTP expired?
+        <a href="{{ url_for('driver_register') }}">
+            Register again
+        </a>
+    </p>
+
+    <p>
+        <a href="{{ url_for('driver_login') }}">Back to Driver Login</a>
+    </p>
+</div>
+{% endblock %}
+```

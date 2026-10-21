@@ -1,0 +1,230 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+
+    <!-- Dashboard Header -->
+    <div class="dashboard-header">
+        <div>
+            <h1>🚘 Driver Dashboard</h1>
+            <p>Welcome, {{ driver.name if driver else "Driver" }}!</p>
+        </div>
+
+        <div>
+            <span class="status-badge status-available">
+                {{ driver.status if driver else "Driver" }}
+            </span>
+            <a href="{{ url_for('logout') }}" class="btn btn-outline">
+                Logout
+            </a>
+        </div>
+    </div>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert
+                    {% if category == 'success' %}alert-success
+                    {% elif category == 'error' or category == 'danger' %}alert-danger
+                    {% elif category == 'warning' %}alert-warning
+                    {% else %}alert-info{% endif %}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <!-- Summary -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-label">Total Rides Shown</div>
+            <div class="stat-value">{{ rides|length }}</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-label">Pending Requests</div>
+            <div class="stat-value">
+                {{ rides|selectattr('status', 'equalto', 'REQUESTED')|list|length }}
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-label">Accepted / Ongoing</div>
+            <div class="stat-value">
+                {{ rides|selectattr('status', 'in', ['ACCEPTED', 'ONGOING'])|list|length }}
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-label">Completed Rides</div>
+            <div class="stat-value">
+                {{ rides|selectattr('status', 'equalto', 'COMPLETED')|list|length }}
+            </div>
+        </div>
+    </div>
+
+    <!-- Ride Requests -->
+    <div class="page-header">
+        <div>
+            <h2>Ride Requests & Your Rides</h2>
+            <p>Review requests and manage your active rides.</p>
+        </div>
+    </div>
+
+    {% if rides %}
+
+        <div class="ride-list">
+
+            {% for ride in rides %}
+            <div class="ride-card">
+
+                <div class="ride-card-header">
+                    <div>
+                        <h3>Ride #{{ ride.ride_id }}</h3>
+                        <p class="text-muted">
+                            Rider: {{ ride.rider_name or "Rider" }}
+                        </p>
+                    </div>
+
+                    <span class="status-badge
+                        {% if ride.status == 'COMPLETED' %}
+                            status-completed
+                        {% elif ride.status == 'CANCELLED' %}
+                            status-cancelled
+                        {% elif ride.status == 'ONGOING' %}
+                            status-ongoing
+                        {% elif ride.status == 'ACCEPTED' %}
+                            status-accepted
+                        {% else %}
+                            status-requested
+                        {% endif %}">
+                        {{ ride.status }}
+                    </span>
+                </div>
+
+                <div class="ride-route">
+                    <div>
+                        <span class="detail-label">Pickup</span>
+                        <strong>
+                            {{ ride.pickup_location or "Not specified" }}
+                        </strong>
+                    </div>
+
+                    <span class="route-arrow">→</span>
+
+                    <div>
+                        <span class="detail-label">Drop</span>
+                        <strong>
+                            {{ ride.drop_location or "Not specified" }}
+                        </strong>
+                    </div>
+                </div>
+
+                <div class="ride-details">
+                    <div>
+                        <span class="detail-label">Departure</span>
+                        <span class="detail-value">
+                            {{ ride.departure_time or "Not specified" }}
+                        </span>
+                    </div>
+
+                    <div>
+                        <span class="detail-label">Passengers</span>
+                        <span class="detail-value">
+                            {{ ride.passenger_count or 1 }}
+                        </span>
+                    </div>
+
+                    <div>
+                        <span class="detail-label">Fare</span>
+                        <span class="detail-value">
+                            {% if ride.fare is not none %}
+                                ₹{{ ride.fare }}
+                            {% else %}
+                                Not available
+                            {% endif %}
+                        </span>
+                    </div>
+
+                    <div>
+                        <span class="detail-label">Rider</span>
+                        <span class="detail-value">
+                            {{ ride.rider_name or "CampusRide user" }}
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Ride Actions -->
+                <div class="ride-actions">
+
+                    {% if ride.status == 'REQUESTED' %}
+
+                        <form method="POST"
+                              action="{{ url_for('accept_ride', ride_id=ride.ride_id) }}">
+                            <button type="submit" class="btn btn-success">
+                                Accept Ride
+                            </button>
+                        </form>
+
+                        <form method="POST"
+                              action="{{ url_for('reject_ride', ride_id=ride.ride_id) }}">
+                            <button type="submit" class="btn btn-danger">
+                                Reject Ride
+                            </button>
+                        </form>
+
+                    {% elif ride.status == 'ACCEPTED' %}
+
+                        <form method="POST"
+                              action="{{ url_for('start_ride', ride_id=ride.ride_id) }}">
+                            <button type="submit" class="btn btn-primary">
+                                Start Ride
+                            </button>
+                        </form>
+
+                    {% elif ride.status == 'ONGOING' %}
+
+                        <form method="POST"
+                              action="{{ url_for('complete_ride', ride_id=ride.ride_id) }}">
+                            <button type="submit" class="btn btn-success">
+                                Complete Ride
+                            </button>
+                        </form>
+
+                    {% elif ride.status == 'COMPLETED' %}
+
+                        <span class="text-success fw-bold">
+                            ✓ Ride completed
+                        </span>
+
+                    {% elif ride.status == 'CANCELLED' %}
+
+                        <span class="text-muted">
+                            Ride cancelled
+                        </span>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="empty-state">
+            <h3>🚗 No rides available</h3>
+            <p>
+                There are currently no ride requests or rides assigned to you.
+                Check back later.
+            </p>
+        </div>
+
+    {% endif %}
+
+</div>
+{% endblock %}

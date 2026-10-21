@@ -1,0 +1,346 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Welcome to CampusRide</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+    <style>
+        .home-page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background:
+                radial-gradient(circle at top left, #e4edff 0, transparent 40%),
+                #f5f8ff;
+        }
+
+        .home-navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 22px 7%;
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .home-brand {
+            color: #0b2347;
+            font-size: 26px;
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        .home-brand span {
+            color: #2860f5;
+        }
+
+        .home-tag {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .home-hero {
+            width: min(100% - 32px, 1050px);
+            margin: auto;
+            padding: 65px 0;
+            text-align: center;
+        }
+
+        .home-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border: 1px solid #cbdcff;
+            border-radius: 999px;
+            background: #eaf0ff;
+            color: #2452c7;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .home-hero h1 {
+            margin: 22px 0 12px;
+            color: #0b2347;
+            font-size: clamp(38px, 6vw, 60px);
+            font-weight: 850;
+            letter-spacing: -1.5px;
+        }
+
+        .home-hero h1 span {
+            color: #2860f5;
+        }
+
+        .home-description {
+            max-width: 620px;
+            margin: 0 auto 42px;
+            color: #64748b;
+            font-size: 19px;
+            line-height: 1.8;
+        }
+
+        .home-role-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 25px;
+            max-width: 850px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .home-role-card {
+            padding: 32px;
+            border: 1px solid #dce5f1;
+            border-radius: 24px;
+            background: #ffffff;
+            box-shadow: 0 12px 35px rgba(15, 35, 75, 0.06);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .home-role-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 40px rgba(15, 35, 75, 0.1);
+        }
+
+        .home-role-icon {
+            display: flex;
+            width: 66px;
+            height: 66px;
+            align-items: center;
+            justify-content: center;
+            border-radius: 19px;
+            background: #e8efff;
+            font-size: 32px;
+        }
+
+        .home-role-icon.driver {
+            background: #dcfce7;
+        }
+
+        .home-role-card h2 {
+            margin: 22px 0 10px;
+            color: #0b2347;
+            font-size: 25px;
+        }
+
+        .home-role-card > p {
+            min-height: 52px;
+            margin-bottom: 22px;
+            color: #64748b;
+            line-height: 1.7;
+        }
+
+        .home-action {
+            display: flex;
+            width: 100%;
+            min-height: 50px;
+            align-items: center;
+            justify-content: center;
+            padding: 13px 18px;
+            border-radius: 12px;
+            background: #2860f5;
+            color: #ffffff;
+            font-weight: 750;
+            text-align: center;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .home-action:hover {
+            background: #1d4ed8;
+            color: #ffffff;
+        }
+
+        .home-action.driver-action {
+            background: #16a34a;
+        }
+
+        .home-action.driver-action:hover {
+            background: #15803d;
+        }
+
+        .home-register {
+            margin-top: 20px;
+            color: #64748b;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .home-register a {
+            color: #2860f5;
+            font-weight: 750;
+            text-decoration: none;
+        }
+
+        .home-register a:hover {
+            text-decoration: underline;
+        }
+
+        .home-security {
+            margin-top: 22px;
+            color: #64748b;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .home-footer {
+            padding: 22px 16px;
+            border-top: 1px solid #e2e8f0;
+            background: #ffffff;
+            color: #64748b;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        @media (max-width: 650px) {
+            .home-navbar {
+                padding: 18px 20px;
+            }
+
+            .home-brand {
+                font-size: 22px;
+            }
+
+            .home-tag {
+                font-size: 12px;
+            }
+
+            .home-hero {
+                padding: 45px 0;
+            }
+
+            .home-description {
+                font-size: 16px;
+            }
+
+            .home-role-grid {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+
+            .home-role-card {
+                padding: 25px;
+            }
+
+            .home-role-card > p {
+                min-height: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div class="home-page">
+
+    <!-- Navigation -->
+    <header class="home-navbar">
+        <a class="home-brand" href="{{ url_for('index') }}">
+            Campus<span>Ride</span> 🚗
+        </a>
+
+        <div class="home-tag">
+            Safe rides. Smarter campus travel.
+        </div>
+    </header>
+
+    <!-- Welcome Section -->
+    <main class="home-hero">
+
+        <div class="home-badge">
+            🎓 Your Campus Ride-Sharing Platform
+        </div>
+
+        <h1>
+            Welcome to <span>CampusRide</span>
+        </h1>
+
+        <p class="home-description">
+            Ride Sharing Cab — connect with fellow campus commuters,
+            find rides, and make your daily journey easier.
+        </p>
+
+        <!-- Rider and Driver Options -->
+        <section class="home-role-grid">
+
+            <!-- Rider Card -->
+            <article class="home-role-card">
+
+                <div class="home-role-icon">
+                    🧑‍🎓
+                </div>
+
+                <h2>I'm a Rider</h2>
+
+                <p>
+                    Find available rides, book your journey,
+                    and manage your bookings with ease.
+                </p>
+
+                <a
+                    class="home-action"
+                    href="{{ url_for('login') }}"
+                >
+                    Continue as Rider →
+                </a>
+
+                <div class="home-register">
+                    New to CampusRide?
+                    <a href="{{ url_for('register') }}">
+                        Register as Rider
+                    </a>
+                </div>
+
+            </article>
+
+            <!-- Driver Card -->
+            <article class="home-role-card">
+
+                <div class="home-role-icon driver">
+                    🚘
+                </div>
+
+                <h2>I'm a Driver</h2>
+
+                <p>
+                    Manage ride requests, accept passengers,
+                    and keep track of your rides.
+                </p>
+
+                <a
+                    class="home-action driver-action"
+                    href="{{ url_for('driver_login') }}"
+                >
+                    Continue as Driver →
+                </a>
+
+                <div class="home-register">
+                    New driver?
+                    <a href="{{ url_for('driver_register') }}">
+                        Register as Driver
+                    </a>
+                </div>
+
+                <div class="home-security">
+                    🛡 Secure login using OTP verification
+                </div>
+
+            </article>
+
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="home-footer">
+        © {{ 2026 }} CampusRide · Ride Sharing Cab
+    </footer>
+
+</div>
+</body>
+</html>
