@@ -27,6 +27,7 @@ from flask import (
 
 )
 
+
 load_dotenv()
 
 app = Flask(__name__)
@@ -205,6 +206,14 @@ def get_route(cursor, source_id, destination_id):
 
     return cursor.fetchone()
 
+def redirect_to_search(pickup_id, drop_id, departure_text, party_size):
+    return redirect(url_for(
+        "dashboard",
+        pickup_id=pickup_id,
+        drop_id=drop_id,
+        departure=departure_text,
+        party_size=party_size
+    ))
 # ==================================================
 
 # 2FACTOR OTP
